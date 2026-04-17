@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Launcher</title>
+</head>
+
+<body style="background:black; color:lime; font-family:consolas; text-align:center; padding-top:100px;">
+
+  <h1>AI System</h1>
+  <p>Click below to start AI</p>
+
+  <button onclick="startAI()" style="padding:12px 25px; font-size:16px; cursor:pointer;">
+    Start AI
+  </button>
+
+  <p id="info" style="margin-top:20px; color:gray;"></p>
+
+  <script>
+    function startAI() {
+      // Try to open HTA
+      window.location.href = "ai.hta";
+
+      // Show message if blocked
+      document.getElementById("info").innerText =
+        "If nothing happens, download the file and run it manually.";
+    }
+  </script>
+
+</body>
+</html>
